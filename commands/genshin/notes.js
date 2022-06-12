@@ -32,7 +32,7 @@ module.exports = {
                             }\n:arrows_counterclockwise: До полного восстановления ${toDHMS(
                                 dailyNote.home_coin_recovery_time
                             )}\n:recycle: Преобразователь: ${
-                                dailyNote.transformer.obtained ? "собран" : "не собран"
+                                dailyNote.transformer.obtained ? "не собран" : "собран"
                             }\n:arrows_counterclockwise: До полного восстановления ${getTransformerTime(
                                 dailyNote.transformer.recovery_time
                             )}\n:mag: Начатых экспедиций: ${dailyNote.current_expedition_num}/${
