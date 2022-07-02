@@ -1,4 +1,3 @@
-const { Message, MessageCollector } = require("discord.js");
 const Config = require("../../config");
 const userUidSchema = require("../../schemas/user-uid-schema");
 

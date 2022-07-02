@@ -8,7 +8,6 @@ module.exports = {
     description: "Показывает текущее количество смолы",
     aliases: ["r", "р", "смола"],
     async execute(client, msg, args) {
-        if (args.length != 0) return;
         const query = { discordID: msg.author.id };
         const projection = { cookie: 1, UID: 1 };
         userUidSchema

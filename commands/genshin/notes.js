@@ -5,12 +5,22 @@ const genshin = require("../../genshinkit").genshin;
 
 module.exports = {
     name: "notes",
-    description: "Показывает текущее количество смолы",
+    description: "Показывает ваши игровые заметки",
     aliases: ["n", "з", "заметки"],
     async execute(client, msg, args) {
-        if (args.length != 0) return;
-        const query = { discordID: msg.author.id };
-        const projection = { cookie: 1, UID: 1 };
+        let query, projection;
+        if (args.length > 1) msg.reply("Слишком много аргументов");
+        if (args.length == 0) {
+            query = { discordID: msg.author.id };
+            projection = { cookie: 1, UID: 1 };
+        } else {
+            if (args[0].length == 9) {
+                query = { UID: args[0] };
+                projection = { UID: 1, cookie: 1, discordID: 1 };
+            } else if (args[0].startsWith("<@")) {
+                query = { discordID: args[0].substring(2, args[0].length - 1) };
+            }
+        }
         userUidSchema
             .findOne(query, projection)
             .then((result) => {
@@ -32,7 +42,7 @@ module.exports = {
                             }\n:arrows_counterclockwise: До полного восстановления ${toDHMS(
                                 dailyNote.home_coin_recovery_time
                             )}\n:recycle: Преобразователь: ${
-                                dailyNote.transformer.obtained ? "собран" : "не собран"
+                                !dailyNote.transformer.recovery_time.reached ? "собран" : "не собран"
                             }\n:arrows_counterclockwise: До полного восстановления ${getTransformerTime(
                                 dailyNote.transformer.recovery_time
                             )}\n:mag: Начатых экспедиций: ${dailyNote.current_expedition_num}/${
@@ -55,7 +65,8 @@ module.exports = {
 function getExpeditionList(expeditions) {
     let result = "";
     for (let i = 0; i < expeditions.length; i++) {
-        result += `\t\t:clock1: Осталось времени: ${toDHMS(expeditions[i].remained_time)}`;
+        if (expeditions[i].remained_time != "0")
+            result += `\t\t:clock1: Осталось времени: ${toDHMS(expeditions[i].remained_time)}`;
         if (i != expeditions.length - 1) result += "\n";
     }
     return result;

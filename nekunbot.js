@@ -49,7 +49,7 @@ const getFiles = (dir) => {
 };
 
 client.on("messageCreate", async (msg) => {
-    if (msg.author.bot || !msg.content.startsWith(Config.prefix)) return;
+    if (msg.author.bot || !msg.content.toLowerCase().startsWith(Config.prefix)) return;
 
     const args = msg.content.slice(Config.prefix.length).split(/ +/);
     const commandName = args.shift().toLowerCase();

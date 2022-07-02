@@ -7,7 +7,6 @@ module.exports = {
     description: "Показывает выполнимость дейликов",
     aliases: ["d", "д", "дейлики", "поручения", "dailies", "daily"],
     async execute(client, msg, args) {
-        if (args.length != 0) return;
         const query = { discordID: msg.author.id };
         const projection = { cookie: 1, UID: 1 };
         userUidSchema
