@@ -8,18 +8,14 @@ module.exports = {
     description: "Показывает ваши игровые заметки",
     aliases: ["n", "з", "заметки"],
     async execute(client, msg, args) {
-        let query, projection;
+        let query,
+            projection = { cookie: 1, UID: 1 };
         if (args.length > 1) msg.reply("Слишком много аргументов");
         if (args.length == 0) {
             query = { discordID: msg.author.id };
-            projection = { cookie: 1, UID: 1 };
         } else {
-            if (args[0].length == 9) {
-                query = { UID: args[0] };
-                projection = { UID: 1, cookie: 1, discordID: 1 };
-            } else if (args[0].startsWith("<@")) {
-                query = { discordID: args[0].substring(2, args[0].length - 1) };
-            }
+            if (args[0].length == 9) query = { UID: args[0] };
+            else if (args[0].startsWith("<@")) query = { discordID: args[0].substring(2, args[0].length - 1) };
         }
         userUidSchema
             .findOne(query, projection)
@@ -29,12 +25,16 @@ module.exports = {
                     .getDailyNote(result.UID)
                     .then((dailyNote) => {
                         msg.reply(
-                            `:notebook_with_decorative_cover: **Игровые заметки**\n:crescent_moon: Смола: ${
+                            `[${
+                                result.UID
+                            }]\n:notebook_with_decorative_cover: **Игровые заметки**\n:crescent_moon: Смола: ${
                                 dailyNote.current_resin
                             }/${dailyNote.max_resin}\n:arrows_counterclockwise: До полного восстановления ${toDHMS(
                                 dailyNote.resin_recovery_time
                             )}\n:date: Выполнено поручений: ${dailyNote.finished_task_num}, доп. награда ${
-                                dailyNote.is_extra_task_reward_received ? "собрана" : "не собрана"
+                                dailyNote.is_extra_task_reward_received
+                                    ? "собрана :white_check_mark:"
+                                    : "не собрана :x:"
                             }\n:money_with_wings: Скидки на боссов: ${
                                 dailyNote.remain_resin_discount_num
                             }\n:moneybag: Монеты обители: ${dailyNote.current_home_coin}/${

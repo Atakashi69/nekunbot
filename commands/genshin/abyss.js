@@ -22,7 +22,7 @@ module.exports = {
                         msg.reply("Ваш запрос обрабатывается, это займёт некоторое время :clock6:").then((msg) => {
                             getFloorsPic(abyss.floors).then((floorspic) => {
                                 msg.edit({
-                                    content: getAbyssContent(abyss),
+                                    content: `[${result.UID}]\n` + getAbyssContent(abyss),
                                     embeds: getAbyssEmbed(abyss),
                                     files: [floorspic],
                                 });

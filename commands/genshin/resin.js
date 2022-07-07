@@ -18,7 +18,9 @@ module.exports = {
                     .getDailyNote(result.UID)
                     .then((dailyNote) => {
                         msg.reply(
-                            `${dailyNote.current_resin}/${dailyNote.max_resin}\nДо полного восстановления ${toDHMS(
+                            `[${result.UID}]\n:crescent_moon: Смола: ${dailyNote.current_resin}/${
+                                dailyNote.max_resin
+                            }\n:arrows_counterclockwise: До полного восстановления ${toDHMS(
                                 dailyNote.resin_recovery_time
                             )}`
                         );

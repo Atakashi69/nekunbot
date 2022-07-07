@@ -17,10 +17,12 @@ module.exports = {
                     .getDailyNote(result.UID)
                     .then((dailyNote) => {
                         msg.reply(
-                            `${dailyNote.finished_task_num}/${
-                                dailyNote.total_task_num
-                            } поручений сделано\nДополнительная награда собрана? ${
-                                dailyNote.is_extra_task_reward_received ? "Да" : "Нет"
+                            `[${result.UID}]\n:date: Выполнено поручений: ${
+                                dailyNote.finished_task_num
+                            }, доп. награда ${
+                                dailyNote.is_extra_task_reward_received
+                                    ? "собрана :white_check_mark:"
+                                    : "не собрана :x:"
                             }`
                         );
                     })
