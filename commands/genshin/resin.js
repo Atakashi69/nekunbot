@@ -8,8 +8,15 @@ module.exports = {
     description: "Показывает текущее количество смолы",
     aliases: ["r", "р", "смола"],
     async execute(client, msg, args) {
-        const query = { discordID: msg.author.id };
-        const projection = { cookie: 1, UID: 1 };
+        let query,
+            projection = { cookie: 1, UID: 1 };
+        if (args.length > 1) msg.reply("Слишком много аргументов");
+        if (args.length == 0) {
+            query = { discordID: msg.author.id };
+        } else {
+            if (args[0].length == 9) query = { UID: args[0] };
+            else if (args[0].startsWith("<@")) query = { discordID: args[0].substring(2, args[0].length - 1) };
+        }
         userUidSchema
             .findOne(query, projection)
             .then((result) => {
