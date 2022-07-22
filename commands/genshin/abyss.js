@@ -6,7 +6,7 @@ const { createCanvas, loadImage, registerFont } = require("canvas");
 const genshin = require("../../genshinkit").genshin;
 
 module.exports = {
-    name: "abyss",
+    name: "abyss123",
     description: "Показывает информацию о вашей бездне",
     aliases: ["a", "а", "бездна"],
     async execute(client, msg, args) {
