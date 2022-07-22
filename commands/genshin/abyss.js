@@ -8,7 +8,7 @@ const genshin = require("../../genshinkit").genshin;
 module.exports = {
     name: "abyss123",
     description: "Показывает информацию о вашей бездне",
-    aliases: ["a", "а", "бездна"],
+    aliases: [], //["a", "а", "бездна"],
     async execute(client, msg, args) {
         let query,
             projection = { cookie: 1, UID: 1 };
