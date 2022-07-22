@@ -30,6 +30,7 @@ client.on("ready", async () => {
     }
 
     await require("./genshinkit").login();
+    client.user.setActivity("на свой префикс — n!", { type: "WATCHING" });
     console.log("Everything is ready!");
 });
 
