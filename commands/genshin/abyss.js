@@ -151,53 +151,66 @@ async function getFloorsPic(floors) {
             ctx.fillRect(offsetX + (quartFloorWidth - avatarWidth) - 5, offsetY + 300, avatarWidth, avatarHeight);
             ctx.fillRect(offsetX + quartFloorWidth + 5, offsetY + 300, avatarWidth, avatarHeight);
 
-            await loadImage(floors[i - 1].levels[j - 1].battles[0].avatars[0].icon).then((image) => {
-                ctx.drawImage(
-                    image,
-                    offsetX + (quartFloorWidth - avatarWidth) - 5,
-                    offsetY + 210,
-                    avatarWidth,
-                    avatarWidth
-                );
-            });
-            await loadImage(floors[i - 1].levels[j - 1].battles[0].avatars[1].icon).then((image) => {
-                ctx.drawImage(image, offsetX + quartFloorWidth + 5, offsetY + 210, avatarWidth, avatarWidth);
-            });
-            await loadImage(floors[i - 1].levels[j - 1].battles[0].avatars[2].icon).then((image) => {
-                ctx.drawImage(
-                    image,
-                    offsetX + (quartFloorWidth - avatarWidth) - 5,
-                    offsetY + 300,
-                    avatarWidth,
-                    avatarWidth
-                );
-            });
-            await loadImage(floors[i - 1].levels[j - 1].battles[0].avatars[3].icon).then((image) => {
-                ctx.drawImage(image, offsetX + quartFloorWidth + 5, offsetY + 300, avatarWidth, avatarWidth);
-            });
+            if (floors[i - 1].levels[j - 1].battles[0].avatars[0])
+                await loadImage(floors[i - 1].levels[j - 1].battles[0].avatars[0].icon).then((image) => {
+                    ctx.drawImage(
+                        image,
+                        offsetX + (quartFloorWidth - avatarWidth) - 5,
+                        offsetY + 210,
+                        avatarWidth,
+                        avatarWidth
+                    );
+                });
+
+            if (floors[i - 1].levels[j - 1].battles[0].avatars[1])
+                await loadImage(floors[i - 1].levels[j - 1].battles[0].avatars[1].icon).then((image) => {
+                    ctx.drawImage(image, offsetX + quartFloorWidth + 5, offsetY + 210, avatarWidth, avatarWidth);
+                });
+
+            if (floors[i - 1].levels[j - 1].battles[0].avatars[2])
+                await loadImage(floors[i - 1].levels[j - 1].battles[0].avatars[2].icon).then((image) => {
+                    ctx.drawImage(
+                        image,
+                        offsetX + (quartFloorWidth - avatarWidth) - 5,
+                        offsetY + 300,
+                        avatarWidth,
+                        avatarWidth
+                    );
+                });
+
+            if (floors[i - 1].levels[j - 1].battles[0].avatars[3])
+                await loadImage(floors[i - 1].levels[j - 1].battles[0].avatars[3].icon).then((image) => {
+                    ctx.drawImage(image, offsetX + quartFloorWidth + 5, offsetY + 300, avatarWidth, avatarWidth);
+                });
 
             ctx.fillStyle = "white";
             ctx.font = '12px "HYWenHei"';
-            ctx.fillText(
-                `${floors[i - 1].levels[j - 1].battles[0].avatars[0].level}`,
-                offsetX + quartFloorWidth - 5 - avatarWidth / 2,
-                offsetY + 210 + avatarWidth + 12
-            );
-            ctx.fillText(
-                `${floors[i - 1].levels[j - 1].battles[0].avatars[1].level}`,
-                offsetX + quartFloorWidth + 5 + avatarWidth / 2,
-                offsetY + 210 + avatarWidth + 12
-            );
-            ctx.fillText(
-                `${floors[i - 1].levels[j - 1].battles[0].avatars[2].level}`,
-                offsetX + quartFloorWidth - 5 - avatarWidth / 2,
-                offsetY + 300 + avatarWidth + 12
-            );
-            ctx.fillText(
-                `${floors[i - 1].levels[j - 1].battles[0].avatars[3].level}`,
-                offsetX + quartFloorWidth + 5 + avatarWidth / 2,
-                offsetY + 300 + avatarWidth + 12
-            );
+            if (floors[i - 1].levels[j - 1].battles[0].avatars[0])
+                ctx.fillText(
+                    `${floors[i - 1].levels[j - 1].battles[0].avatars[0].level}`,
+                    offsetX + quartFloorWidth - 5 - avatarWidth / 2,
+                    offsetY + 210 + avatarWidth + 12
+                );
+
+            if (floors[i - 1].levels[j - 1].battles[0].avatars[1])
+                ctx.fillText(
+                    `${floors[i - 1].levels[j - 1].battles[0].avatars[1].level}`,
+                    offsetX + quartFloorWidth + 5 + avatarWidth / 2,
+                    offsetY + 210 + avatarWidth + 12
+                );
+
+            if (floors[i - 1].levels[j - 1].battles[0].avatars[2])
+                ctx.fillText(
+                    `${floors[i - 1].levels[j - 1].battles[0].avatars[2].level}`,
+                    offsetX + quartFloorWidth - 5 - avatarWidth / 2,
+                    offsetY + 300 + avatarWidth + 12
+                );
+            if (floors[i - 1].levels[j - 1].battles[0].avatars[3])
+                ctx.fillText(
+                    `${floors[i - 1].levels[j - 1].battles[0].avatars[3].level}`,
+                    offsetX + quartFloorWidth + 5 + avatarWidth / 2,
+                    offsetY + 300 + avatarWidth + 12
+                );
             ctx.fillStyle = "rgba(75, 0, 130, 0.5)"; //Цвет прямоугольников
 
             quartFloorWidth = halfFloorWidth * 1.5;
@@ -206,53 +219,68 @@ async function getFloorsPic(floors) {
             ctx.fillRect(offsetX + (quartFloorWidth - avatarWidth) - 5, offsetY + 300, avatarWidth, avatarHeight);
             ctx.fillRect(offsetX + quartFloorWidth + 5, offsetY + 300, avatarWidth, avatarHeight);
 
-            await loadImage(floors[i - 1].levels[j - 1].battles[1].avatars[0].icon).then((image) => {
-                ctx.drawImage(
-                    image,
-                    offsetX + (quartFloorWidth - avatarWidth) - 5,
-                    offsetY + 210,
-                    avatarWidth,
-                    avatarWidth
-                );
-            });
-            await loadImage(floors[i - 1].levels[j - 1].battles[1].avatars[1].icon).then((image) => {
-                ctx.drawImage(image, offsetX + quartFloorWidth + 5, offsetY + 210, avatarWidth, avatarWidth);
-            });
-            await loadImage(floors[i - 1].levels[j - 1].battles[1].avatars[2].icon).then((image) => {
-                ctx.drawImage(
-                    image,
-                    offsetX + (quartFloorWidth - avatarWidth) - 5,
-                    offsetY + 300,
-                    avatarWidth,
-                    avatarWidth
-                );
-            });
-            await loadImage(floors[i - 1].levels[j - 1].battles[1].avatars[3].icon).then((image) => {
-                ctx.drawImage(image, offsetX + quartFloorWidth + 5, offsetY + 300, avatarWidth, avatarWidth);
-            });
+            if (floors[i - 1].levels[j - 1].battles[1].avatars[0])
+                await loadImage(floors[i - 1].levels[j - 1].battles[1].avatars[0].icon).then((image) => {
+                    ctx.drawImage(
+                        image,
+                        offsetX + (quartFloorWidth - avatarWidth) - 5,
+                        offsetY + 210,
+                        avatarWidth,
+                        avatarWidth
+                    );
+                });
+
+            if (floors[i - 1].levels[j - 1].battles[1].avatars[1])
+                await loadImage(floors[i - 1].levels[j - 1].battles[1].avatars[1].icon).then((image) => {
+                    ctx.drawImage(image, offsetX + quartFloorWidth + 5, offsetY + 210, avatarWidth, avatarWidth);
+                });
+
+            if (floors[i - 1].levels[j - 1].battles[1].avatars[2])
+                await loadImage(floors[i - 1].levels[j - 1].battles[1].avatars[2].icon).then((image) => {
+                    ctx.drawImage(
+                        image,
+                        offsetX + (quartFloorWidth - avatarWidth) - 5,
+                        offsetY + 300,
+                        avatarWidth,
+                        avatarWidth
+                    );
+                });
+
+            if (floors[i - 1].levels[j - 1].battles[1].avatars[3])
+                await loadImage(floors[i - 1].levels[j - 1].battles[1].avatars[3].icon).then((image) => {
+                    ctx.drawImage(image, offsetX + quartFloorWidth + 5, offsetY + 300, avatarWidth, avatarWidth);
+                });
 
             ctx.fillStyle = "white";
             ctx.font = '12px "HYWenHei"';
-            ctx.fillText(
-                `${floors[i - 1].levels[j - 1].battles[1].avatars[0].level}`,
-                offsetX + quartFloorWidth - 5 - avatarWidth / 2,
-                offsetY + 210 + avatarWidth + 12
-            );
-            ctx.fillText(
-                `${floors[i - 1].levels[j - 1].battles[1].avatars[1].level}`,
-                offsetX + quartFloorWidth + 5 + avatarWidth / 2,
-                offsetY + 210 + avatarWidth + 12
-            );
-            ctx.fillText(
-                `${floors[i - 1].levels[j - 1].battles[1].avatars[2].level}`,
-                offsetX + quartFloorWidth - 5 - avatarWidth / 2,
-                offsetY + 300 + avatarWidth + 12
-            );
-            ctx.fillText(
-                `${floors[i - 1].levels[j - 1].battles[1].avatars[3].level}`,
-                offsetX + quartFloorWidth + 5 + avatarWidth / 2,
-                offsetY + 300 + avatarWidth + 12
-            );
+
+            if (floors[i - 1].levels[j - 1].battles[1].avatars[0])
+                ctx.fillText(
+                    `${floors[i - 1].levels[j - 1].battles[1].avatars[0].level}`,
+                    offsetX + quartFloorWidth - 5 - avatarWidth / 2,
+                    offsetY + 210 + avatarWidth + 12
+                );
+
+            if (floors[i - 1].levels[j - 1].battles[1].avatars[1])
+                ctx.fillText(
+                    `${floors[i - 1].levels[j - 1].battles[1].avatars[1].level}`,
+                    offsetX + quartFloorWidth + 5 + avatarWidth / 2,
+                    offsetY + 210 + avatarWidth + 12
+                );
+
+            if (floors[i - 1].levels[j - 1].battles[1].avatars[2])
+                ctx.fillText(
+                    `${floors[i - 1].levels[j - 1].battles[1].avatars[2].level}`,
+                    offsetX + quartFloorWidth - 5 - avatarWidth / 2,
+                    offsetY + 300 + avatarWidth + 12
+                );
+
+            if (floors[i - 1].levels[j - 1].battles[1].avatars[3])
+                ctx.fillText(
+                    `${floors[i - 1].levels[j - 1].battles[1].avatars[3].level}`,
+                    offsetX + quartFloorWidth + 5 + avatarWidth / 2,
+                    offsetY + 300 + avatarWidth + 12
+                );
 
             ctx.fillStyle = "white";
             ctx.font = '16px "HYWenHei"';
