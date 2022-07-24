@@ -6,7 +6,7 @@ const genshin = require("../../genshinkit").genshin;
 module.exports = {
     name: "resin",
     description: "Показывает текущее количество смолы",
-    aliases: ["r", "р", "смола"],
+    aliases: ["r", "с", "смола"],
     async execute(client, msg, args) {
         let query,
             projection = { cookie: 1, UID: 1 };
