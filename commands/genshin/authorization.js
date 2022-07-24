@@ -9,9 +9,12 @@ module.exports = {
         const filter = (m) => m.author.id === msg.author.id;
         msg.author
             .send(
-                "Здравствуйте, для авторизации вам надо отправить мне токен с сайта https://www.hoyolab.com\nЧтобы это сделать, вам необходимо:\n**1.** Авторизоваться на сайте\n**2.** Нажать правой кнопкой мыши в любом месте\n**3.** Кликнуть 'Просмотреть код элемента'\n**4.** Зайти в раздел консоль и прописать там команду document.cookie, нажать Enter\n**5.** Ответ на эту команду выслать мне в ЛС\n(скриншоты для наглядности)\nhttps://imgur.com/ZdwhDUm\nhttps://imgur.com/udbN4cG"
+                "Здравствуйте, для авторизации вам надо отправить мне токен с сайта https://www.hoyolab.com\n**Инструкция только для ПК:**\n**1.** Авторизоваться на сайте\n**2.** Нажать правой кнопкой мыши в любом месте\n**3.** Кликнуть 'Просмотреть код элемента' (см. 1 скрин)\n**4.** Зайти в раздел консоль и прописать там команду document.cookie, нажать Enter (см. 2 скрин)\n**5.** Ответ на эту команду выслать мне в ЛС\nhttps://imgur.com/ZdwhDUm\nhttps://imgur.com/udbN4cG\n\n**Инструкция для телефонов (работает и на ПК):**\n**1.** Авторизоваться на сайте\n**2.** Скопировать ссылку, отправленную мной следующим сообщением вставить её в поле вместо адреса, и, если требуется, дописать в начале ссылки 'javascript:' (см. 3 скрин)\n**3.** В правом нижнем углу появится значок шестерёнки, нажмите на него и скопируйте токен (см. 4 скрин), а затем отправьте его мне в ЛС\nhttps://i.imgur.com/K7QXBhc.jpg\nhttps://i.imgur.com/HY87mlY.jpg"
             )
             .then((onfullfiled) => {
+                msg.author.send(
+                    'javascript:(function(){var script=document.createElement("script");script.src="//cdn.takagg.com/eruda-v1/eruda.js";document.body.appendChild(script);script.onload=function(){eruda.init()}})();'
+                );
                 msg.author.dmChannel
                     .awaitMessages({ filter, max: 1, time: 3600_000, errors: ["time"] })
                     .then((respondCookie) => {
