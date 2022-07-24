@@ -1,6 +1,7 @@
 const { MessageEmbed, MessageAttachment } = require("discord.js");
 const Config = require("../../config");
 const fs = require("fs");
+const path = require("path");
 const userUidSchema = require("../../schemas/user-uid-schema");
 const { createCanvas, loadImage, registerFont } = require("canvas");
 const genshin = require("../../genshinkit").genshin;
@@ -90,9 +91,9 @@ function getAbyssEmbed(abyss) {
 }
 
 async function getFloorsPic(floors) {
-    const path = __dirname + "\\abyssres\\";
+    const abyssResPath = path.join(__dirname, "abyssres/");
     const imageName = `floors.png`;
-    registerFont(path + "gifont.ttf", { family: "HYWenHei" });
+    registerFont(path.join(abyssResPath, "gifont.ttf"), { family: "HYWenHei" });
     const canvas = createCanvas(1600, 1000);
     const ctx = canvas.getContext("2d");
 
@@ -103,7 +104,7 @@ async function getFloorsPic(floors) {
     ctx.textAlign = "center";
     ctx.fillText(Config.errormsg, canvas.width / 2, 50);
 
-    await loadImage(path + "abyssbg.png").then((image) => {
+    await loadImage(path.join(abyssResPath, "abyssbg.png")).then((image) => {
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
     });
 
@@ -277,6 +278,6 @@ async function getFloorsPic(floors) {
 function getCharNameFromURL(url) {
     let temp = url.split("_").pop();
     let name = temp.substring(0, temp.indexOf("."));
-    let DB = JSON.parse(fs.readFileSync(__dirname + "\\abyssres\\entoru.json", "utf8"));
+    let DB = JSON.parse(fs.readFileSync(path.join(__dirname, "abyssres/entoru.json"), "utf8"));
     return DB[name] || name;
 }
