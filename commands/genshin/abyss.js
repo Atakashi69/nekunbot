@@ -55,9 +55,9 @@ function getAbyssContent(abyss) {
         abyss.start_time * 1000
     ).toLocaleDateString()} по ${new Date(abyss.end_time * 1000).toLocaleDateString()}\nМакс. глубина: ${
         abyss.max_floor
-    } | ${abyss.total_star} :star: \nБитвы: ${abyss.total_win_times}/${abyss.total_battle_times} | ${Math.floor(
-        (abyss.total_win_times / abyss.total_battle_times) * 100
-    )}% побед`;
+    } | ${Math.min(36, abyss.total_star)} :star: \nБитвы: ${abyss.total_win_times}/${
+        abyss.total_battle_times
+    } | ${Math.floor((abyss.total_win_times / abyss.total_battle_times) * 100)}% побед`;
     return result;
 }
 
@@ -98,6 +98,8 @@ async function getFloorsPic(floors) {
     const canvas = createCanvas(1600, 1000);
     const ctx = canvas.getContext("2d");
 
+    console.log(floors);
+
     ctx.fillStyle = "black";
     ctx.font = '24px "HYWenHei"';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -110,6 +112,10 @@ async function getFloorsPic(floors) {
     });
 
     for (let i = 1; i <= 4; i++) {
+        if (floors[i - 1].index < 9) {
+            i--;
+            continue;
+        }
         const floorWidth = canvas.width / 4;
         const offsetX = floorWidth * (i - 1);
 
