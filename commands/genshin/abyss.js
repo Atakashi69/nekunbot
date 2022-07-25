@@ -98,8 +98,6 @@ async function getFloorsPic(floors) {
     const canvas = createCanvas(1600, 1000);
     const ctx = canvas.getContext("2d");
 
-    console.log(floors);
-
     ctx.fillStyle = "black";
     ctx.font = '24px "HYWenHei"';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
