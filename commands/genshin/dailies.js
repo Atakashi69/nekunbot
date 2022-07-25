@@ -34,7 +34,8 @@ module.exports = {
                         );
                     })
                     .catch((e) => {
-                        msg.reply(Config.errormsg);
+                        if (e.code === 10102) msg.reply(Config.privatedatamsg);
+                        else msg.reply(Config.errormsg);
                         console.error(e);
                     });
             })
