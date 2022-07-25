@@ -366,19 +366,20 @@ async function getFloorsPic(floors) {
 
             ctx.fillStyle = "white";
             ctx.font = '16px "HYWenHei"';
-            ctx.fillText(
-                `${floors[i - 1].levels[j - 1].index} Зал | ${floors[i - 1].levels[j - 1].star}/${
-                    floors[i - 1].levels[j - 1].max_star
-                }★ | ${new Date(floors[i - 1].levels[j - 1].battles[0].timestamp * 1000).toLocaleDateString()}`,
-                offsetX + floorWidth / 2,
-                offsetY + 143
-            );
+            if (floors[i - 1] && floors[i - 1].levels[j - 1] && floors[i - 1].levels[j - 1].battles[0])
+                ctx.fillText(
+                    `${floors[i - 1].levels[j - 1].index} Зал | ${floors[i - 1].levels[j - 1].star}/${
+                        floors[i - 1].levels[j - 1].max_star
+                    }★ | ${new Date(floors[i - 1].levels[j - 1].battles[0].timestamp * 1000).toLocaleDateString()}`,
+                    offsetX + floorWidth / 2,
+                    offsetY + 143
+                );
             ctx.fillText("1 половина", offsetX + halfFloorWidth / 2, offsetY + 192);
             ctx.fillText("2 половина", offsetX + halfFloorWidth * 1.5, offsetY + 192);
         }
 
         ctx.font = '24px "HYWenHei"';
-        ctx.fillText(`${floors[i - 1].index} Этаж`, offsetX + floorWidth / 2, 84);
+        if (floors[i - 1]) ctx.fillText(`${floors[i - 1].index} Этаж`, offsetX + floorWidth / 2, 84);
     }
 
     const attachment = new MessageAttachment(canvas.toBuffer(), imageName);
