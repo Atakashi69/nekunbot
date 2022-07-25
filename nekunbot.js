@@ -55,14 +55,14 @@ client.on("messageCreate", async (msg) => {
     const args = msg.content.slice(Config.prefix.length).split(/ +/);
     const commandName = args.shift().toLowerCase();
 
-    const command =
+    const cmd =
         client.commands.get(commandName) ||
         client.commands.find((command) => command.aliases && command.aliases.includes(commandName));
 
-    if (!command) return msg.reply(`Команды '${commandName}' не существует`);
+    if (!cmd) return msg.reply(`Команды '${commandName}' не существует`);
 
     try {
-        command.execute(client, msg, args);
+        cmd.execute(client, msg, args);
     } catch (e) {
         msg.reply(Config.errormsg);
         console.error(e);
