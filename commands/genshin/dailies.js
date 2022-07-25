@@ -4,8 +4,8 @@ const genshin = require("../../genshinkit").genshin;
 
 module.exports = {
     name: "dailies",
-    description: "Показывает выполнимость дейликов",
-    aliases: ["d", "д", "дейлики", "поручения", "dailies", "daily"],
+    description: "Показывает выполненность дейликов",
+    aliases: ["дейлики", "поручения"],
     async execute(client, msg, args) {
         let query,
             projection = { cookie: 1, UID: 1 };

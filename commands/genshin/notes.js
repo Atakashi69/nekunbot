@@ -6,7 +6,7 @@ const genshin = require("../../genshinkit").genshin;
 module.exports = {
     name: "notes",
     description: "Показывает ваши игровые заметки",
-    aliases: ["n", "з", "заметки"],
+    aliases: ["заметки"],
     async execute(client, msg, args) {
         let query,
             projection = { cookie: 1, UID: 1 };

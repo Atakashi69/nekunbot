@@ -9,7 +9,7 @@ const genshin = require("../../genshinkit").genshin;
 module.exports = {
     name: "abyss",
     description: "Показывает информацию о вашей бездне",
-    aliases: ["a", "б", "бездна"],
+    aliases: ["бездна"],
     async execute(client, msg, args) {
         let query,
             projection = { cookie: 1, UID: 1 };
@@ -152,7 +152,12 @@ async function getFloorsPic(floors) {
             ctx.fillRect(offsetX + (quartFloorWidth - avatarWidth) - 5, offsetY + 300, avatarWidth, avatarHeight);
             ctx.fillRect(offsetX + quartFloorWidth + 5, offsetY + 300, avatarWidth, avatarHeight);
 
-            if (floors[i - 1].levels[j - 1].battles[0].avatars[0])
+            if (
+                floors[i - 1] &&
+                floors[i - 1].levels[j - 1] &&
+                floors[i - 1].levels[j - 1].battles[0] &&
+                floors[i - 1].levels[j - 1].battles[0].avatars[0]
+            )
                 await loadImage(floors[i - 1].levels[j - 1].battles[0].avatars[0].icon).then((image) => {
                     ctx.drawImage(
                         image,
@@ -163,12 +168,22 @@ async function getFloorsPic(floors) {
                     );
                 });
 
-            if (floors[i - 1].levels[j - 1].battles[0].avatars[1])
+            if (
+                floors[i - 1] &&
+                floors[i - 1].levels[j - 1] &&
+                floors[i - 1].levels[j - 1].battles[0] &&
+                floors[i - 1].levels[j - 1].battles[0].avatars[1]
+            )
                 await loadImage(floors[i - 1].levels[j - 1].battles[0].avatars[1].icon).then((image) => {
                     ctx.drawImage(image, offsetX + quartFloorWidth + 5, offsetY + 210, avatarWidth, avatarWidth);
                 });
 
-            if (floors[i - 1].levels[j - 1].battles[0].avatars[2])
+            if (
+                floors[i - 1] &&
+                floors[i - 1].levels[j - 1] &&
+                floors[i - 1].levels[j - 1].battles[0] &&
+                floors[i - 1].levels[j - 1].battles[0].avatars[2]
+            )
                 await loadImage(floors[i - 1].levels[j - 1].battles[0].avatars[2].icon).then((image) => {
                     ctx.drawImage(
                         image,
@@ -179,34 +194,60 @@ async function getFloorsPic(floors) {
                     );
                 });
 
-            if (floors[i - 1].levels[j - 1].battles[0].avatars[3])
+            if (
+                floors[i - 1] &&
+                floors[i - 1].levels[j - 1] &&
+                floors[i - 1].levels[j - 1].battles[0] &&
+                floors[i - 1].levels[j - 1].battles[0].avatars[3]
+            )
                 await loadImage(floors[i - 1].levels[j - 1].battles[0].avatars[3].icon).then((image) => {
                     ctx.drawImage(image, offsetX + quartFloorWidth + 5, offsetY + 300, avatarWidth, avatarWidth);
                 });
 
             ctx.fillStyle = "white";
             ctx.font = '12px "HYWenHei"';
-            if (floors[i - 1].levels[j - 1].battles[0].avatars[0])
+
+            if (
+                floors[i - 1] &&
+                floors[i - 1].levels[j - 1] &&
+                floors[i - 1].levels[j - 1].battles[0] &&
+                floors[i - 1].levels[j - 1].battles[0].avatars[0]
+            )
                 ctx.fillText(
                     `${floors[i - 1].levels[j - 1].battles[0].avatars[0].level}`,
                     offsetX + quartFloorWidth - 5 - avatarWidth / 2,
                     offsetY + 210 + avatarWidth + 12
                 );
 
-            if (floors[i - 1].levels[j - 1].battles[0].avatars[1])
+            if (
+                floors[i - 1] &&
+                floors[i - 1].levels[j - 1] &&
+                floors[i - 1].levels[j - 1].battles[0] &&
+                floors[i - 1].levels[j - 1].battles[0].avatars[1]
+            )
                 ctx.fillText(
                     `${floors[i - 1].levels[j - 1].battles[0].avatars[1].level}`,
                     offsetX + quartFloorWidth + 5 + avatarWidth / 2,
                     offsetY + 210 + avatarWidth + 12
                 );
 
-            if (floors[i - 1].levels[j - 1].battles[0].avatars[2])
+            if (
+                floors[i - 1] &&
+                floors[i - 1].levels[j - 1] &&
+                floors[i - 1].levels[j - 1].battles[0] &&
+                floors[i - 1].levels[j - 1].battles[0].avatars[2]
+            )
                 ctx.fillText(
                     `${floors[i - 1].levels[j - 1].battles[0].avatars[2].level}`,
                     offsetX + quartFloorWidth - 5 - avatarWidth / 2,
                     offsetY + 300 + avatarWidth + 12
                 );
-            if (floors[i - 1].levels[j - 1].battles[0].avatars[3])
+            if (
+                floors[i - 1] &&
+                floors[i - 1].levels[j - 1] &&
+                floors[i - 1].levels[j - 1].battles[0] &&
+                floors[i - 1].levels[j - 1].battles[0].avatars[3]
+            )
                 ctx.fillText(
                     `${floors[i - 1].levels[j - 1].battles[0].avatars[3].level}`,
                     offsetX + quartFloorWidth + 5 + avatarWidth / 2,
@@ -220,7 +261,12 @@ async function getFloorsPic(floors) {
             ctx.fillRect(offsetX + (quartFloorWidth - avatarWidth) - 5, offsetY + 300, avatarWidth, avatarHeight);
             ctx.fillRect(offsetX + quartFloorWidth + 5, offsetY + 300, avatarWidth, avatarHeight);
 
-            if (floors[i - 1].levels[j - 1].battles[1].avatars[0])
+            if (
+                floors[i - 1] &&
+                floors[i - 1].levels[j - 1] &&
+                floors[i - 1].levels[j - 1].battles[1] &&
+                floors[i - 1].levels[j - 1].battles[1].avatars[0]
+            )
                 await loadImage(floors[i - 1].levels[j - 1].battles[1].avatars[0].icon).then((image) => {
                     ctx.drawImage(
                         image,
@@ -231,12 +277,22 @@ async function getFloorsPic(floors) {
                     );
                 });
 
-            if (floors[i - 1].levels[j - 1].battles[1].avatars[1])
+            if (
+                floors[i - 1] &&
+                floors[i - 1].levels[j - 1] &&
+                floors[i - 1].levels[j - 1].battles[1] &&
+                floors[i - 1].levels[j - 1].battles[1].avatars[1]
+            )
                 await loadImage(floors[i - 1].levels[j - 1].battles[1].avatars[1].icon).then((image) => {
                     ctx.drawImage(image, offsetX + quartFloorWidth + 5, offsetY + 210, avatarWidth, avatarWidth);
                 });
 
-            if (floors[i - 1].levels[j - 1].battles[1].avatars[2])
+            if (
+                floors[i - 1] &&
+                floors[i - 1].levels[j - 1] &&
+                floors[i - 1].levels[j - 1].battles[1] &&
+                floors[i - 1].levels[j - 1].battles[1].avatars[2]
+            )
                 await loadImage(floors[i - 1].levels[j - 1].battles[1].avatars[2].icon).then((image) => {
                     ctx.drawImage(
                         image,
@@ -247,7 +303,12 @@ async function getFloorsPic(floors) {
                     );
                 });
 
-            if (floors[i - 1].levels[j - 1].battles[1].avatars[3])
+            if (
+                floors[i - 1] &&
+                floors[i - 1].levels[j - 1] &&
+                floors[i - 1].levels[j - 1].battles[1] &&
+                floors[i - 1].levels[j - 1].battles[1].avatars[3]
+            )
                 await loadImage(floors[i - 1].levels[j - 1].battles[1].avatars[3].icon).then((image) => {
                     ctx.drawImage(image, offsetX + quartFloorWidth + 5, offsetY + 300, avatarWidth, avatarWidth);
                 });
@@ -255,28 +316,48 @@ async function getFloorsPic(floors) {
             ctx.fillStyle = "white";
             ctx.font = '12px "HYWenHei"';
 
-            if (floors[i - 1].levels[j - 1].battles[1].avatars[0])
+            if (
+                floors[i - 1] &&
+                floors[i - 1].levels[j - 1] &&
+                floors[i - 1].levels[j - 1].battles[1] &&
+                floors[i - 1].levels[j - 1].battles[1].avatars[0]
+            )
                 ctx.fillText(
                     `${floors[i - 1].levels[j - 1].battles[1].avatars[0].level}`,
                     offsetX + quartFloorWidth - 5 - avatarWidth / 2,
                     offsetY + 210 + avatarWidth + 12
                 );
 
-            if (floors[i - 1].levels[j - 1].battles[1].avatars[1])
+            if (
+                floors[i - 1] &&
+                floors[i - 1].levels[j - 1] &&
+                floors[i - 1].levels[j - 1].battles[1] &&
+                floors[i - 1].levels[j - 1].battles[1].avatars[1]
+            )
                 ctx.fillText(
                     `${floors[i - 1].levels[j - 1].battles[1].avatars[1].level}`,
                     offsetX + quartFloorWidth + 5 + avatarWidth / 2,
                     offsetY + 210 + avatarWidth + 12
                 );
 
-            if (floors[i - 1].levels[j - 1].battles[1].avatars[2])
+            if (
+                floors[i - 1] &&
+                floors[i - 1].levels[j - 1] &&
+                floors[i - 1].levels[j - 1].battles[1] &&
+                floors[i - 1].levels[j - 1].battles[1].avatars[2]
+            )
                 ctx.fillText(
                     `${floors[i - 1].levels[j - 1].battles[1].avatars[2].level}`,
                     offsetX + quartFloorWidth - 5 - avatarWidth / 2,
                     offsetY + 300 + avatarWidth + 12
                 );
 
-            if (floors[i - 1].levels[j - 1].battles[1].avatars[3])
+            if (
+                floors[i - 1] &&
+                floors[i - 1].levels[j - 1] &&
+                floors[i - 1].levels[j - 1].battles[1] &&
+                floors[i - 1].levels[j - 1].battles[1].avatars[3]
+            )
                 ctx.fillText(
                     `${floors[i - 1].levels[j - 1].battles[1].avatars[3].level}`,
                     offsetX + quartFloorWidth + 5 + avatarWidth / 2,
